@@ -1,0 +1,25 @@
+
+{% extends 'messaging/base.html' %}
+{% load custom_filter %}
+
+
+{% block title %}Inbox{% endblock %}
+
+{% block content %}
+    <h2>Inbox</h2>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>From:</strong> {{ message.sender.username }}<br>
+                    <strong>Message:</strong> {{ message.encrypted_content|decrypt_message }} <!-- Decrypt the message content -->
+                    <small>{{ message.timestamp }}</small> <!-- Assuming you have a timestamp field -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages in your inbox.</p>
+    {% endif %}
+{% endblock %}
+

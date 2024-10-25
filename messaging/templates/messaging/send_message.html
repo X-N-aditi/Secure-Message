@@ -1,0 +1,19 @@
+{% extends "messaging/base.html" %}
+
+{% block content %}
+<h2>Send a Secure Message</h2>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="content" required placeholder="Enter your message..."></textarea>
+    <button type="submit">Send</button>
+</form>
+{% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+
+
